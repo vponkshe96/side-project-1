@@ -42,6 +42,7 @@ const Holidays = () => {
           <strong>{holiday.date}</strong> {holiday.summary}
         </li>
         //if you want can refactor above JSX by creating another component - good exercise to attempt in the future
+        //test
       ))}
     </ol>
   );
