@@ -1,9 +1,9 @@
-import Holidays from "./Components/Holidays";
+import PublicHolidays from "./Components/PublicHolidays";
 
 const App = () => {
   return (
     <div className="App">
-      <Holidays />
+      <PublicHolidays />
     </div>
   );
 };
