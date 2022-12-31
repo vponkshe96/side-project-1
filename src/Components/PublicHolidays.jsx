@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import YearInfo from "./YearInfo";
 import axios from "axios";
 
-const PublicHolidays = () => {
+const PublicHolidays = (props) => {
+  //Destructuring props
+  const { startDate, endDate } = props;
+
+  //API variables
   const BASE_CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars";
   const BASE_CALENDAR_ID_FOR_PUBLIC_HOLIDAY =
     "holiday@group.v.calendar.google.com";
   const API_KEY = process.env.REACT_APP_API_KEY;
   const CALENDAR_REGION = "en.hong_kong.official"; // This variable refers to region whose holidays do we need to fetch
-  const timeMin = new Date("2023-01-01").toISOString();
-  const timeMax = new Date("2023-12-31").toISOString();
+  const timeMin = new Date(startDate).toISOString();
+  const timeMax = new Date(endDate).toISOString();
 
   const [publicHolidays, setPublicHolidays] = useState([]);
   useEffect(() => {
@@ -34,7 +38,7 @@ const PublicHolidays = () => {
   //want to modify date via below loop
   for (let i = 0; i < publicHolidays.length; i++) {
     const temp = publicHolidays[i].date;
-    let a = (publicHolidays[i].date = new Date(temp).toDateString());
+    publicHolidays[i].date = new Date(temp).toDateString();
   }
 
   //JSX to be rendered on the screen
@@ -52,7 +56,7 @@ const PublicHolidays = () => {
   return (
     <div className="App">
       {publicHolidayList}
-      <YearInfo publicHolidays={publicHolidays} />
+      <YearInfo publicHolidays={publicHolidays} startDate = {startDate} endDate = {endDate} />
     </div>
   );
 };

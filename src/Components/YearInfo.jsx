@@ -1,7 +1,7 @@
 import React from "react";
 
 const YearInfo = (props) => {
-  let { publicHolidays } = props;
+  let { startDate, endDate, publicHolidays } = props;
 
   const getYearDates = (startDate, endDate) => {
     const yearDates = new Array();
@@ -13,10 +13,10 @@ const YearInfo = (props) => {
     return yearDates;
   };
 
-  let startDate = new Date("2023-01-01");
-  let endDate = new Date("2023-12-31");
+  let startDateObject = new Date(startDate);
+  let endDateObject = new Date(endDate);
   //array of 365 elements, each element is a day + date
-  const yearDates = getYearDates(startDate, endDate);
+  const yearDates = getYearDates(startDateObject, endDateObject);
 
   const getYearDatesInfo = (yearDates, publicHolidays) => {
     const yearDatesInfo = [];
@@ -47,13 +47,39 @@ const YearInfo = (props) => {
     }
     return yearDatesInfo;
   };
-
   //array of 365 objects
   //each object has date,type, and isHoliday property
   let yearDatesInfo = getYearDatesInfo(yearDates, publicHolidays);
   console.log(yearDatesInfo);
 
-  return <div>yearInfo</div>;
+  // //ALGO STARTS
+  // const getLeavePeriod = (yearDatesInfo, leaves) => {
+  //   let ans = 0;
+
+  //   let j = -1;
+  //   let count = 0;
+  //   for (let i = 0; i < yearDatesInfo.length; i++) {
+  //     if (yearDatesInfo[i].isHoliday === false) {
+  //       count++;
+  //     }
+  //     while (count > leaves) {
+  //       j++;
+  //       if (yearDatesInfo[i].isHoliday === false) {
+  //         j--;
+  //       }
+  //     }
+  //     let len = i - j;
+  //     if (len > ans) {
+  //       ans = len;
+  //     }
+  //     console.log(ans);
+  //   }
+  //   return ans;
+  // };
+
+ 
+
+  return <div>hi</div>;
 };
 
 export default YearInfo;
